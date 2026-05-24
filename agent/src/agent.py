@@ -213,7 +213,7 @@ SYSTEM_PROMPT = textwrap.dedent(
 class Assistant(Agent):
     def __init__(self) -> None:
         super().__init__(
-            llm=groq.LLM(model="llama-3.3-70b-versatile"),
+            llm=groq.LLM(model="meta-llama/llama-4-scout-17b-16e-instruct"),
             instructions=SYSTEM_PROMPT,
             tools=VISUAL_TOOLS,
         )
