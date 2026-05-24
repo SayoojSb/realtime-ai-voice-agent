@@ -1,0 +1,352 @@
+/*
+ * Abhayanth K — Ocean Descent Portfolio
+ * Design Tokens: Colors & Typography
+ * =============================================
+ * All values derived from the ocean-descent brief.
+ * Import this file first in any design artifact.
+ */
+
+/* ── Imports ─────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Instrument+Serif:ital@0;1&display=swap');
+/* Inter is loaded via next/font in production; CDN fallback: */
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,300;0,14..32,400;0,14..32,500;0,14..32,600;0,14..32,700;1,14..32,400&display=swap');
+
+:root {
+
+  /* ══════════════════════════════════════════
+     ZONE BACKGROUND COLORS
+     Updated dynamically by ScrollTrigger
+  ══════════════════════════════════════════ */
+  --zone-surface:      #03111f;   /* 0m   — deep navy, near-black blue */
+  --zone-twilight:     #020e18;   /* 200m — darker navy, less hue */
+  --zone-descent:      #010a12;   /* 600m — near-void, deep ocean floor */
+  --zone-midnight:     #050912;   /* 1000m — near-black, indigo underlit */
+  --zone-abyss:        #020308;   /* 4000m — total void */
+
+  /* Current zone (runtime var, updated by JS) */
+  --zone-current:      var(--zone-surface);
+
+  /* ══════════════════════════════════════════
+     FOREGROUND / TEXT COLORS
+  ══════════════════════════════════════════ */
+  --text-primary:           #E6E8EE;   /* near-white body text */
+  --text-secondary:         #9BA0AB;   /* muted labels, captions */
+  --text-tertiary:          #5C616D;   /* very muted — axis labels, easter egg */
+  --text-bioluminescent:    #A5B0FB;   /* indigo-glow text, deep sections */
+
+  /* ══════════════════════════════════════════
+     BIOLUMINESCENT ACCENT COLORS
+  ══════════════════════════════════════════ */
+  --bio-indigo:    #818CF8;   /* primary glow — CF graph, borders, contact */
+  --bio-cyan:      #4FD8E8;   /* surface accent, hero elements */
+  --bio-purple:    #B084F5;   /* language skills (TypeScript, Python, C++…) */
+  --bio-green:     #5DCAA5;   /* framework skills (Next.js, React, FastAPI…) */
+  --bio-amber:     #F5B14E;   /* tool skills (Git, Docker, Redis…), warnings */
+  --bio-red:       #F26B6B;   /* error / failed submission states */
+
+  /* ══════════════════════════════════════════
+     SEMANTIC ALIASES
+  ══════════════════════════════════════════ */
+  --color-border:          rgba(129, 140, 248, 0.25);
+  --color-border-active:   rgba(129, 140, 248, 0.75);
+  --color-surface-card:    rgba(8, 24, 46, 0.60);   /* descent-zone card bg */
+  --color-surface-hud:     rgba(5, 9, 18, 0.70);    /* midnight HUD bg */
+  --color-success:         var(--bio-green);
+  --color-warning:         var(--bio-amber);
+  --color-error:           var(--bio-red);
+  --color-highlight:       var(--bio-indigo);
+
+  /* ══════════════════════════════════════════
+     GLOW UTILITIES
+  ══════════════════════════════════════════ */
+  --glow-soft:        0 0 20px currentColor;
+  --glow-strong:      0 0 40px currentColor;
+  --glow-text-soft:   0 0 12px currentColor;
+  --glow-text-strong: 0 0 24px currentColor;
+
+  /* Per-color glow shadows */
+  --glow-indigo:   0 0 20px rgba(129, 140, 248, 0.5);
+  --glow-cyan:     0 0 20px rgba(79, 216, 232, 0.5);
+  --glow-purple:   0 0 20px rgba(176, 132, 245, 0.5);
+  --glow-green:    0 0 20px rgba(93, 202, 165, 0.5);
+  --glow-amber:    0 0 20px rgba(245, 177, 78, 0.5);
+  --glow-red:      0 0 20px rgba(242, 107, 107, 0.5);
+
+  /* ══════════════════════════════════════════
+     TYPOGRAPHY — FONT FAMILIES
+  ══════════════════════════════════════════ */
+  --font-sans:   'Inter', 'Geist Sans', system-ui, sans-serif;
+  --font-mono:   'JetBrains Mono', ui-monospace, 'Cascadia Code', monospace;
+  --font-serif:  'Instrument Serif', Georgia, 'Times New Roman', serif;
+
+  /* ══════════════════════════════════════════
+     TYPOGRAPHY — SIZE SCALE
+  ══════════════════════════════════════════ */
+  --text-xs:       11px;    /* micro labels, easter egg hint */
+  --text-sm:       12px;    /* small mono, stack chips, HUD sub-labels */
+  --text-base:     14px;    /* default body */
+  --text-lg:       18px;    /* secondary headings, card taglines */
+  --text-xl:       24px;    /* section-level subtitles */
+  --text-2xl:      32px;    /* project names on cards */
+  --text-3xl:      48px;    /* CP stats large label */
+  --text-display:  96px;    /* hero name */
+  --text-mega:     160px;   /* contact "hello?" */
+
+  /* ══════════════════════════════════════════
+     TYPOGRAPHY — WEIGHTS
+  ══════════════════════════════════════════ */
+  --weight-light:   300;
+  --weight-regular: 400;
+  --weight-medium:  500;
+  --weight-semibold: 600;
+  --weight-bold:    700;
+
+  /* ══════════════════════════════════════════
+     TYPOGRAPHY — LINE HEIGHTS
+  ══════════════════════════════════════════ */
+  --leading-tight:   1.1;
+  --leading-snug:    1.3;
+  --leading-normal:  1.5;
+  --leading-relaxed: 1.7;
+
+  /* ══════════════════════════════════════════
+     TYPOGRAPHY — LETTER SPACING
+  ══════════════════════════════════════════ */
+  --tracking-tight:  -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide:   0.05em;
+  --tracking-wider:  0.1em;
+  --tracking-widest: 0.15em;
+
+  /* ══════════════════════════════════════════
+     SPACING SCALE (4pt base)
+  ══════════════════════════════════════════ */
+  --space-1:    4px;
+  --space-2:    8px;
+  --space-3:    12px;
+  --space-4:    16px;
+  --space-6:    24px;
+  --space-8:    32px;
+  --space-12:   48px;
+  --space-16:   64px;
+  --space-24:   96px;
+  --space-32:  128px;
+
+  /* ══════════════════════════════════════════
+     BORDER RADIUS
+  ══════════════════════════════════════════ */
+  --radius-sm:   4px;    /* chips, pills — nearly square */
+  --radius-md:   8px;    /* cards, modals */
+  --radius-lg:   12px;   /* large panels */
+  --radius-full: 9999px; /* availability pill, cursor ring */
+
+  /* ══════════════════════════════════════════
+     BORDER
+  ══════════════════════════════════════════ */
+  --border-subtle:   1px solid rgba(129, 140, 248, 0.20);
+  --border-default:  1px solid rgba(129, 140, 248, 0.35);
+  --border-active:   1px solid rgba(129, 140, 248, 0.75);
+  --border-pulse: rgba(129, 140, 248, 0.3); /* animated via keyframes */
+
+  /* ══════════════════════════════════════════
+     ANIMATION — EASING
+  ══════════════════════════════════════════ */
+  --ease-water:       cubic-bezier(0.45, 0, 0.15, 1);   /* content reveals */
+  --ease-spring:      cubic-bezier(0.34, 1.56, 0.64, 1); /* soft bounce */
+  --ease-out-soft:    cubic-bezier(0.0, 0.0, 0.2, 1);
+  --ease-in-soft:     cubic-bezier(0.8, 0.0, 1.0, 1);
+
+  /* ══════════════════════════════════════════
+     ANIMATION — DURATIONS
+  ══════════════════════════════════════════ */
+  --duration-fast:    200ms;
+  --duration-normal:  400ms;
+  --duration-slow:    800ms;
+  --duration-glacial: 1400ms;  /* line draw, stat count-up */
+
+  /* ══════════════════════════════════════════
+     ANIMATION — BOB / DRIFT PERIODS
+  ══════════════════════════════════════════ */
+  --bob-period-fast:   4s;
+  --bob-period-normal: 5s;
+  --bob-period-slow:   7s;
+  --bob-amplitude:     3px;    /* default vertical bob */
+  --drift-rotation:    2deg;   /* max card/jellyfish rotation drift */
+
+  /* ══════════════════════════════════════════
+     Z-INDEX LAYERS
+  ══════════════════════════════════════════ */
+  --z-ocean:     0;      /* WebGL canvas */
+  --z-content:   10;     /* all 2D section content */
+  --z-hud:       50;     /* depth indicator, pressure bar */
+  --z-cursor:    100;    /* custom cursor */
+  --z-modal:     200;    /* project modal, cmd+k */
+  --z-toast:     300;    /* konami toast, copy confirmation */
+
+}
+
+/* ══════════════════════════════════════════
+   SEMANTIC TYPOGRAPHY CLASSES
+══════════════════════════════════════════ */
+
+.t-display {
+  font-family: var(--font-sans);
+  font-size: var(--text-display);
+  font-weight: var(--weight-medium);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+.t-mega {
+  font-family: var(--font-sans);
+  font-size: var(--text-mega);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+  color: var(--text-primary);
+}
+
+.t-hero-tagline {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-xl);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+.t-section-stat {
+  font-family: var(--font-mono);
+  font-size: 64px;
+  font-weight: var(--weight-regular);
+  line-height: 1;
+  color: var(--bio-indigo);
+  text-shadow: var(--glow-text-soft);
+}
+
+.t-mono-label {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  font-weight: var(--weight-regular);
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+}
+
+.t-mono-hud {
+  font-family: var(--font-mono);
+  font-size: var(--text-sm);
+  color: var(--text-bioluminescent);
+  letter-spacing: var(--tracking-wide);
+}
+
+.t-chip {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-wide);
+  padding: 3px 8px;
+  border: var(--border-subtle);
+  border-radius: var(--radius-sm);
+  color: var(--text-bioluminescent);
+  background: transparent;
+}
+
+.t-editorial {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-size: var(--text-lg);
+  line-height: var(--leading-relaxed);
+  color: var(--text-secondary);
+}
+
+.t-terminal {
+  font-family: var(--font-mono);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-bioluminescent);
+  text-shadow: 0 0 8px var(--bio-indigo);
+}
+
+/* ══════════════════════════════════════════
+   KEYFRAMES (shared)
+══════════════════════════════════════════ */
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(calc(-1 * var(--bob-amplitude, 3px))); }
+}
+
+@keyframes drift-rotate {
+  0%, 100% { transform: rotate(0deg); }
+  33%       { transform: rotate(var(--drift-rotation, 1.5deg)); }
+  66%       { transform: rotate(calc(-1 * var(--drift-rotation, 1.5deg))); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 0.8; }
+}
+
+@keyframes pulse-border {
+  0%, 100% { border-color: rgba(129, 140, 248, 0.25); }
+  50%       { border-color: rgba(129, 140, 248, 0.70); }
+}
+
+@keyframes blink-cursor {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes rise {
+  from { transform: translateY(20px); opacity: 0; }
+  to   { transform: translateY(0);    opacity: 1; }
+}
+
+@keyframes sink-dissolve {
+  from { transform: translateY(0) scale(1); opacity: 1; }
+  to   { transform: translateY(200px) scale(0.85); opacity: 0; }
+}
+
+/* ══════════════════════════════════════════
+   UTILITY CLASSES
+══════════════════════════════════════════ */
+
+.glow-indigo  { color: var(--bio-indigo);  text-shadow: var(--glow-text-soft); }
+.glow-cyan    { color: var(--bio-cyan);    text-shadow: var(--glow-text-soft); }
+.glow-purple  { color: var(--bio-purple);  text-shadow: var(--glow-text-soft); }
+.glow-green   { color: var(--bio-green);   text-shadow: var(--glow-text-soft); }
+.glow-amber   { color: var(--bio-amber);   text-shadow: var(--glow-text-soft); }
+
+.bob-slow     { animation: bob var(--bob-period-slow)   ease-in-out infinite; }
+.bob-normal   { animation: bob var(--bob-period-normal) ease-in-out infinite; }
+.bob-fast     { animation: bob var(--bob-period-fast)   ease-in-out infinite; }
+
+.drift        { animation: drift-rotate 12s ease-in-out infinite; }
+
+.blend-screen { mix-blend-mode: screen; }
+
+/* Availability pill */
+.pill-available {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-1) var(--space-3);
+  border: var(--border-default);
+  border-radius: var(--radius-full);
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  color: var(--bio-green);
+  letter-spacing: var(--tracking-wider);
+}
+
+.pill-available::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--bio-green);
+  box-shadow: 0 0 6px var(--bio-green);
+  animation: pulse-glow 2s ease-in-out infinite;
+}
