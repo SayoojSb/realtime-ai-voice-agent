@@ -1,0 +1,23 @@
+# Python
+agent/venv/
+agent/__pycache__/
+agent/src/__pycache__/
+agent/**/__pycache__/
+agent/.pytest_cache/
+agent/*.egg-info/
+agent/.eggs/
+
+# Node
+frontend/node_modules/
+frontend/.next/
+frontend/.turbo/
+
+# Env files
+**/.env.local
+**/.env
+
+# Leads (captured data — do not commit)
+agent/leads/
+
+# OS
+.DS_Store
