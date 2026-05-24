@@ -193,7 +193,9 @@ frontend/
 
 ## What I'd Do Next (Given Another Week)
 
-1. **Caller identification** — ask for the visitor's email during the call and send them a personalised follow-up email summarising the conversation and next steps
+1. **Admin / founder dashboard** — a password-protected `/admin` view for Husain showing a chronological feed of every past call: session duration, interest level, captured fields, and the full transcript. Clicking a lead expands the detail view with AI-generated talking points for the follow-up call
+
+2. **Caller identification** — ask for the visitor's email during the call and send them a personalised follow-up email summarising the conversation and next steps
 
 2. **CRM integration** — push captured leads directly into HubSpot or Notion instead of local JSON files, with deduplication and deal-stage tagging based on interest level
 
