@@ -249,6 +249,7 @@ async def my_agent(ctx: JobContext) -> None:
         stt=deepgram.STT(model="nova-2", language="en"),
         tts=cartesia.TTS(voice="794f9389-aac1-45b6-b726-9d9369183238"),
         vad=ctx.proc.userdata["vad"],
+        min_endpointing_delay=0.8,
     )
 
     # ── Lead capture on session close ────────────────────────────────────────
