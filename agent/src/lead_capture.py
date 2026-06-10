@@ -44,7 +44,7 @@ _DEFAULT_LEADS_DIR = Path(__file__).parent.parent / "leads"
 
 # Groq is OpenAI-compatible — we use the openai client pointed at Groq's URL
 _GROQ_BASE_URL = "https://api.groq.com/openai/v1"
-_EXTRACTION_MODEL = "llama-3.1-8b-instant"
+_EXTRACTION_MODEL = "meta-llama/llama-4-scout-17b-16e-instruct"
 
 # ---------------------------------------------------------------------------
 # Extraction prompt

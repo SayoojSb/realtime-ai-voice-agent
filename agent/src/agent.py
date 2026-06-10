@@ -60,11 +60,11 @@ async def _publish_visual(ctx: RunContext, data: dict) -> None:
     try:
         room = ctx.session.room_io.room
         await room.local_participant.publish_data(
-            json.dumps(data),
+            json.dumps(data).encode("utf-8"),
             topic="visual-tool",
         )
-    except Exception as exc:
-        logger.warning("Failed to publish visual tool data: %s", exc)
+    except Exception:
+        logger.exception("Failed to publish visual tool data: %s", data)
 
 
 # ---------------------------------------------------------------------------
