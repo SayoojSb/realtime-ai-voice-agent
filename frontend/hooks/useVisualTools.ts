@@ -5,12 +5,7 @@ import { RoomEvent } from 'livekit-client';
 import type { RemoteParticipant } from 'livekit-client';
 import { useMaybeRoomContext } from '@livekit/components-react';
 
-export type VisualView =
-  | 'none'
-  | 'services'
-  | 'service-detail'
-  | 'process'
-  | 'lead-fields';
+export type VisualView = 'none' | 'services' | 'service-detail' | 'process' | 'lead-fields';
 
 export interface VisualToolState {
   activeView: VisualView;
@@ -44,7 +39,7 @@ export function useVisualTools() {
       payload: Uint8Array,
       _participant?: RemoteParticipant,
       _kind?: unknown,
-      topic?: string,
+      topic?: string
     ) => {
       if (topic !== 'visual-tool') return;
 

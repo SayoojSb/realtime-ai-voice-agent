@@ -13,7 +13,8 @@ interface ManeuverOrbProps {
 
 function listenPath(t: number, amp: number): string {
   const pts: string[] = [];
-  const W = 240, H = 60;
+  const W = 240,
+    H = 60;
   for (let i = 0; i <= 48; i++) {
     const x = (i / 48) * W;
     const k = i / 48;
@@ -48,16 +49,16 @@ export function ManeuverOrb({ state = 'idle', size = 380, className }: ManeuverO
   let amp: number;
   switch (state) {
     case 'connecting':
-      amp = 0.18 + 0.10 * Math.sin(t * 1.6);
+      amp = 0.18 + 0.1 * Math.sin(t * 1.6);
       break;
     case 'listening':
-      amp = 0.30 + 0.22 * (0.5 + 0.5 * Math.sin(t * 1.2)) * (0.6 + 0.4 * Math.sin(t * 3.1 + 1.2));
+      amp = 0.3 + 0.22 * (0.5 + 0.5 * Math.sin(t * 1.2)) * (0.6 + 0.4 * Math.sin(t * 3.1 + 1.2));
       break;
     case 'thinking':
-      amp = 0.22 + 0.10 * Math.sin(t * 0.6);
+      amp = 0.22 + 0.1 * Math.sin(t * 0.6);
       break;
     case 'speaking':
-      amp = 0.55 + 0.30 * (0.5 + 0.5 * Math.sin(t * 2.6 + Math.sin(t * 1.3) * 1.5));
+      amp = 0.55 + 0.3 * (0.5 + 0.5 * Math.sin(t * 2.6 + Math.sin(t * 1.3) * 1.5));
       break;
     default: // idle
       amp = 0.08 + 0.04 * Math.sin(t * 0.8);
@@ -114,7 +115,9 @@ export function ManeuverOrb({ state = 'idle', size = 380, className }: ManeuverO
       {state === 'connecting' && (
         <svg className="mnvr-orb-spinner" viewBox="0 0 240 240">
           <circle
-            cx="120" cy="120" r="108"
+            cx="120"
+            cy="120"
+            r="108"
             fill="none"
             stroke="var(--bio-indigo)"
             strokeWidth="1.2"
@@ -122,7 +125,9 @@ export function ManeuverOrb({ state = 'idle', size = 380, className }: ManeuverO
             opacity="0.7"
           />
           <circle
-            cx="120" cy="120" r="100"
+            cx="120"
+            cy="120"
+            r="100"
             fill="none"
             stroke="var(--bio-cyan)"
             strokeWidth="0.8"
@@ -161,8 +166,22 @@ export function ManeuverOrb({ state = 'idle', size = 380, className }: ManeuverO
             <stop offset="100%" stopColor="rgba(129,140,248,0)" />
           </radialGradient>
         </defs>
-        <circle cx="120" cy="120" r="98" fill="none" stroke="url(#mnvrRingGrad)" strokeWidth="1.5" />
-        <circle cx="120" cy="120" r="86" fill="none" stroke="rgba(165,176,251,0.25)" strokeWidth="0.6" />
+        <circle
+          cx="120"
+          cy="120"
+          r="98"
+          fill="none"
+          stroke="url(#mnvrRingGrad)"
+          strokeWidth="1.5"
+        />
+        <circle
+          cx="120"
+          cy="120"
+          r="86"
+          fill="none"
+          stroke="rgba(165,176,251,0.25)"
+          strokeWidth="0.6"
+        />
       </svg>
 
       {/* Core orb */}
@@ -198,11 +217,7 @@ export function ManeuverOrb({ state = 'idle', size = 380, className }: ManeuverO
 
       {/* Listening: reactive waveform inside ring */}
       {state === 'listening' && (
-        <svg
-          className="mnvr-orb-listen-wave"
-          viewBox="0 0 240 60"
-          preserveAspectRatio="none"
-        >
+        <svg className="mnvr-orb-listen-wave" viewBox="0 0 240 60" preserveAspectRatio="none">
           {[0, 1, 2].map((layer) => (
             <path
               key={layer}
@@ -212,8 +227,8 @@ export function ManeuverOrb({ state = 'idle', size = 380, className }: ManeuverO
                 layer === 0
                   ? 'var(--bio-indigo)'
                   : layer === 1
-                  ? 'var(--text-bio-lum)'
-                  : 'var(--bio-cyan)'
+                    ? 'var(--text-bio-lum)'
+                    : 'var(--bio-cyan)'
               }
               strokeWidth={layer === 0 ? 1.6 : 0.9}
               strokeLinecap="round"

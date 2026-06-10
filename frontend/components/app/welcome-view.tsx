@@ -23,9 +23,7 @@ export const WelcomeView = ({
       {/* Hero */}
       <div className="mnvr-hero">
         <div className="mnvr-hero-label">REALTIME AI CONSULTANT</div>
-        <h1 className="mnvr-hero-title">
-          Maneuver Discovery Agent
-        </h1>
+        <h1 className="mnvr-hero-title">Maneuver Discovery Agent</h1>
         <p className="mnvr-hero-subtitle">
           Realtime conversations for AI strategy, automation, and lead qualification.
         </p>

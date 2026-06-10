@@ -8,9 +8,9 @@ import {
   AgentControlBar,
   type AgentControlBarControls,
 } from '@/components/agents-ui/agent-control-bar';
+import { Shimmer } from '@/components/ai-elements/shimmer';
 import { ManeuverOrb, type OrbState } from '@/components/app/maneuver-orb';
 import { VisualCanvas } from '@/components/app/visual-canvas';
-import { Shimmer } from '@/components/ai-elements/shimmer';
 import { useVisualTools } from '@/hooks/useVisualTools';
 import { cn } from '@/lib/shadcn/utils';
 
@@ -19,7 +19,7 @@ const MotionMessage = motion.create(Shimmer);
 const BOTTOM_VIEW_MOTION_PROPS: MotionProps = {
   variants: {
     visible: { opacity: 1, translateY: '0%' },
-    hidden:  { opacity: 0, translateY: '100%' },
+    hidden: { opacity: 0, translateY: '100%' },
   },
   initial: 'hidden',
   animate: 'visible',
@@ -29,7 +29,7 @@ const BOTTOM_VIEW_MOTION_PROPS: MotionProps = {
 
 const CHAT_MOTION_PROPS: MotionProps = {
   variants: {
-    hidden:  { opacity: 0, transition: { ease: 'easeOut', duration: 0.3 } },
+    hidden: { opacity: 0, transition: { ease: 'easeOut', duration: 0.3 } },
     visible: { opacity: 1, transition: { delay: 0.2, ease: 'easeOut', duration: 0.3 } },
   },
   initial: 'hidden',
@@ -40,7 +40,7 @@ const CHAT_MOTION_PROPS: MotionProps = {
 const SHIMMER_MOTION_PROPS: MotionProps = {
   variants: {
     visible: { opacity: 1, transition: { ease: 'easeIn', duration: 0.5, delay: 0.8 } },
-    hidden:  { opacity: 0, transition: { ease: 'easeIn', duration: 0.5, delay: 0 } },
+    hidden: { opacity: 0, transition: { ease: 'easeIn', duration: 0.5, delay: 0 } },
   },
   initial: 'hidden',
   animate: 'visible',
@@ -48,21 +48,21 @@ const SHIMMER_MOTION_PROPS: MotionProps = {
 };
 
 const STATE_LABEL: Partial<Record<string, string>> = {
-  connecting:   'CONNECTING',
+  connecting: 'CONNECTING',
   initializing: 'CONNECTING',
-  listening:    'LISTENING',
-  thinking:     'THINKING',
-  speaking:     'SPEAKING',
+  listening: 'LISTENING',
+  thinking: 'THINKING',
+  speaking: 'SPEAKING',
 };
 
 function mapOrbState(agentState: string): OrbState {
   const map: Record<string, OrbState> = {
     disconnected: 'idle',
-    connecting:   'connecting',
+    connecting: 'connecting',
     initializing: 'connecting',
-    listening:    'listening',
-    thinking:     'thinking',
-    speaking:     'speaking',
+    listening: 'listening',
+    thinking: 'thinking',
+    speaking: 'speaking',
   };
   return map[agentState] ?? 'idle';
 }
@@ -168,10 +168,8 @@ export function AgentSessionView_01({
       {/* Orb + state label — shifts left when canvas is active */}
       <motion.div
         className={cn(
-          'absolute flex flex-col items-center justify-center gap-4 pointer-events-none',
-          chatOpen
-            ? 'top-4 bottom-[170px]'
-            : 'top-0 bottom-[140px] md:bottom-[175px]'
+          'pointer-events-none absolute flex flex-col items-center justify-center gap-4',
+          chatOpen ? 'top-4 bottom-[170px]' : 'top-0 bottom-[140px] md:bottom-[175px]'
         )}
         animate={{
           left: hasCanvas ? '0%' : '0%',
@@ -183,12 +181,19 @@ export function AgentSessionView_01({
         <ManeuverOrb state={orbState} size={orbSize} />
 
         {stateLabel && (
-          <div className={`mnvr-state-label mnvr-is-${orbState}`} style={{ position: 'static', transform: 'none' }}>
+          <div
+            className={`mnvr-state-label mnvr-is-${orbState}`}
+            style={{ position: 'static', transform: 'none' }}
+          >
             <span className="mnvr-pulse-dot" />
             <span>{stateLabel}</span>
             {showMeter && (
               <span className="mnvr-state-meter">
-                <span /><span /><span /><span /><span />
+                <span />
+                <span />
+                <span />
+                <span />
+                <span />
               </span>
             )}
           </div>

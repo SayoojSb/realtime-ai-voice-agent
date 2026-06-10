@@ -20,7 +20,7 @@ const SERVICES = [
     title: 'Workflow Automation',
     short: 'Eliminate repetitive work',
     detail:
-      'We identify high-volume processes eating your team\'s time and replace them with intelligent automations — lead qual, doc processing, support triage.',
+      "We identify high-volume processes eating your team's time and replace them with intelligent automations — lead qual, doc processing, support triage.",
   },
   {
     id: 'products',
@@ -99,9 +99,8 @@ function ServicesSlide() {
 }
 
 function ServiceDetail({ serviceName }: { serviceName: string }) {
-  const match = SERVICES.find(
-    (s) => s.title.toLowerCase() === serviceName.toLowerCase()
-  ) ?? SERVICES[0];
+  const match =
+    SERVICES.find((s) => s.title.toLowerCase() === serviceName.toLowerCase()) ?? SERVICES[0];
 
   return (
     <motion.div className="mnvr-cv-detail" {...FADE_UP}>
@@ -131,9 +130,7 @@ function ProcessDiagram() {
             <div className="mnvr-cv-step-label">{step.label}</div>
             <div className="mnvr-cv-step-week">{step.week}</div>
             <div className="mnvr-cv-step-desc">{step.desc}</div>
-            {i < PROCESS_STEPS.length - 1 && (
-              <div className="mnvr-cv-step-connector" />
-            )}
+            {i < PROCESS_STEPS.length - 1 && <div className="mnvr-cv-step-connector" />}
           </motion.div>
         ))}
       </div>
@@ -148,9 +145,7 @@ function LeadFields({ fields }: { fields: Record<string, string> }) {
     <motion.div className="mnvr-cv-lead" {...STAGGER_CONTAINER}>
       <div className="mnvr-cv-section-label">DISCOVERY NOTES</div>
       <div className="mnvr-cv-lead-list">
-        {entries.length === 0 && (
-          <div className="mnvr-cv-lead-empty">Listening for details…</div>
-        )}
+        {entries.length === 0 && <div className="mnvr-cv-lead-empty">Listening for details…</div>}
         {entries.map(([key, val], i) => (
           <motion.div
             key={key}

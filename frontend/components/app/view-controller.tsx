@@ -14,27 +14,27 @@ import { AgentSessionView_01 } from '@/components/agents-ui/blocks/agent-session
 import { SessionSummary } from '@/components/app/session-summary';
 import { WelcomeView } from '@/components/app/welcome-view';
 
-const MotionWelcomeView  = motion.create(WelcomeView);
-const MotionSessionView  = motion.create(AgentSessionView_01);
-const MotionSummaryView  = motion.create(SessionSummary);
+const MotionWelcomeView = motion.create(WelcomeView);
+const MotionSessionView = motion.create(AgentSessionView_01);
+const MotionSummaryView = motion.create(SessionSummary);
 
 const FADE_PROPS = {
   variants: {
     visible: { opacity: 1 },
-    hidden:  { opacity: 0 },
+    hidden: { opacity: 0 },
   },
-  initial:    'hidden'  as const,
-  animate:    'visible' as const,
-  exit:       'hidden'  as const,
+  initial: 'hidden' as const,
+  animate: 'visible' as const,
+  exit: 'hidden' as const,
   transition: { duration: 0.45, ease: 'linear' as const },
 };
 
 const STATE_LABEL: Partial<Record<AgentState | 'idle', string>> = {
-  connecting:   'CONNECTING',
+  connecting: 'CONNECTING',
   initializing: 'CONNECTING',
-  listening:    'LISTENING',
-  thinking:     'THINKING',
-  speaking:     'SPEAKING',
+  listening: 'LISTENING',
+  thinking: 'THINKING',
+  speaking: 'SPEAKING',
 };
 
 function fmtTime(s: number) {
@@ -66,7 +66,9 @@ export function ViewController({ appConfig }: ViewControllerProps) {
   const timerRef = useRef<ReturnType<typeof setInterval> | undefined>(undefined);
 
   // Keep a ref in sync so we can read latest value synchronously
-  useEffect(() => { elapsedRef.current = elapsed; }, [elapsed]);
+  useEffect(() => {
+    elapsedRef.current = elapsed;
+  }, [elapsed]);
 
   useEffect(() => {
     if (isConnected) {
@@ -114,11 +116,10 @@ export function ViewController({ appConfig }: ViewControllerProps) {
 
   // Topbar chip text
   const chipText = () => {
-    if (showSummary)                          return 'SESSION COMPLETE';
-    if (!isConnected)                         return 'READY';
-    if (agentState === 'connecting' ||
-        agentState === 'initializing')        return 'CONNECTING';
-    if (isLive)                               return `LIVE · ${fmtTime(elapsed)}`;
+    if (showSummary) return 'SESSION COMPLETE';
+    if (!isConnected) return 'READY';
+    if (agentState === 'connecting' || agentState === 'initializing') return 'CONNECTING';
+    if (isLive) return `LIVE · ${fmtTime(elapsed)}`;
     return 'READY';
   };
 
@@ -148,7 +149,6 @@ export function ViewController({ appConfig }: ViewControllerProps) {
 
       {/* Three-phase content */}
       <AnimatePresence mode="wait">
-
         {/* Phase 1 — Welcome */}
         {!isConnected && !showSummary && (
           <MotionWelcomeView
@@ -179,7 +179,7 @@ export function ViewController({ appConfig }: ViewControllerProps) {
             audioVisualizerWaveLineWidth={appConfig.audioVisualizerWaveLineWidth}
             agentStateLabel={currentLabel}
             showStateMeter={showStateMeter}
-            className="flex-1 min-h-0"
+            className="min-h-0 flex-1"
           />
         )}
 
@@ -192,22 +192,30 @@ export function ViewController({ appConfig }: ViewControllerProps) {
             messageCount={finalMsgCount}
             onStartNew={handleStartNew}
             // MotionSummaryView sits in the flex column and needs to fill space
-            className="flex-1 min-h-0"
+            className="min-h-0 flex-1"
           />
         )}
-
       </AnimatePresence>
 
       {/* HUD corners */}
       <div className="mnvr-hud-corner mnvr-bl">
-        <div>SESSION · <span className="mnvr-hud-lum">
-          {showSummary ? 'complete' : isConnected ? 'live' : 'idle'}
-        </span></div>
-        <div>MODEL · <span className="mnvr-hud-lum">groq · deepgram</span></div>
+        <div>
+          SESSION ·{' '}
+          <span className="mnvr-hud-lum">
+            {showSummary ? 'complete' : isConnected ? 'live' : 'idle'}
+          </span>
+        </div>
+        <div>
+          MODEL · <span className="mnvr-hud-lum">groq · deepgram</span>
+        </div>
       </div>
       <div className="mnvr-hud-corner mnvr-br">
-        <div>v1.0.0 · <span className="mnvr-hud-lum">{agentState ?? 'idle'}</span></div>
-        <div>powered by <span className="mnvr-hud-lum">maneuver</span></div>
+        <div>
+          v1.0.0 · <span className="mnvr-hud-lum">{agentState ?? 'idle'}</span>
+        </div>
+        <div>
+          powered by <span className="mnvr-hud-lum">maneuver</span>
+        </div>
       </div>
     </div>
   );

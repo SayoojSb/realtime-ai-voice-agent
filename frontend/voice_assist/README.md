@@ -3,9 +3,11 @@
 A polished hi-fi prototype for the Maneuver realtime voice agent. **Visual reference only** — built for handoff to engineering. Backend (LiveKit / Groq / Deepgram / Cartesia) is not touched.
 
 ## Open it
+
 Open `index.html` in any modern browser. No build step.
 
 ## File map
+
 ```
 index.html        – entry; loads React 18 + Babel + the JSX bundles
 tokens.css        – design tokens (colors, type, spacing, easings) from the Ocean Descent system
@@ -32,29 +34,33 @@ A fully scripted ~50s end-to-end voice session:
 ## Tweaks
 
 Toggle the **Tweaks** panel from the toolbar to:
+
 - Switch accent color (indigo / purple / cyan)
 - Toggle live transcript visibility
 - Speed up / slow down the demo
 - Restart or reset to idle
 
 ## Design system
+
 Colors, type, and motion tokens are imported from the **Ocean Descent** design system:
+
 - Backgrounds: `#050912` base, indigo radial gradient
 - Accent: bioluminescent indigo `#818CF8` with cyan `#4FD8E8` highlights
 - Fonts: Inter Display (UI), Instrument Serif italic (subtitle), JetBrains Mono (HUD/data)
 - Motion: water-weight easings (`cubic-bezier(0.45, 0, 0.15, 1)`), 200–800ms durations
 
 ## Mapping to the existing frontend
+
 The prototype is component-aligned with the existing LiveKit starter:
 
-| Prototype piece                | Existing component to update |
-|--------------------------------|-------------------------------|
-| Orb visualizer                 | `aura` / `radial` visualizer |
-| State label below orb          | `agent-chat-indicator` |
-| Transcript bubbles             | `agent-chat-transcript` |
-| Bottom mic/end/reset cluster   | `agent-control-bar` |
-| Start Conversation primary     | `start-audio-button` |
-| Hero header & subtitle         | new — wrap above `view-controller` |
-| Lead-capture summary overlay   | new — mount after session ends |
+| Prototype piece              | Existing component to update       |
+| ---------------------------- | ---------------------------------- |
+| Orb visualizer               | `aura` / `radial` visualizer       |
+| State label below orb        | `agent-chat-indicator`             |
+| Transcript bubbles           | `agent-chat-transcript`            |
+| Bottom mic/end/reset cluster | `agent-control-bar`                |
+| Start Conversation primary   | `start-audio-button`               |
+| Hero header & subtitle       | new — wrap above `view-controller` |
+| Lead-capture summary overlay | new — mount after session ends     |
 
 No backend, no Next.js routes, no env vars. Drop the visual treatment into your existing components.
